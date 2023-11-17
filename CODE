@@ -1,0 +1,28 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        #firstly we are dividng the array into 2 and  we are searching our target stay in left portion or right
+        # if nums[l]< nums[m] then we are in the left portion of the array
+        # more over all of the right potion is smaller than nums[l]
+
+        l,r = 0, len(nums)-1
+
+        while l<=r:
+            m =(r+l)//2
+        
+            if target == nums[m]: return True
+            
+            if nums[l]< nums[m]: # true means we are in left potion
+                if nums[l]<= target<nums[m]:
+                    r = m-1
+                else:
+                    l = m+1
+            elif nums[l]> nums[m]:
+                if nums[m]< target <= nums[r]:
+                    l=m+1
+                else:
+                    r=m-1
+            else: # which means nums[m], nums[l] are equal
+                l+=1
+            
+        return False
+        
